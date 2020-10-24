@@ -80,6 +80,5 @@ it('should fail', () => {
 
 it('test game', () => {
     const em = rd.data.Brownie;
-    console.log(em);
     expect(rd.check(em, 'Brownie')).toBeTruthy();
 });
