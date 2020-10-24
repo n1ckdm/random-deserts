@@ -1,10 +1,39 @@
 const rd = require('./index');
 
+it('Makes sure all dessert names are unique', () => {
+    const all = rd.desserts;
+    const allSet = new Set(all);
+
+    expect(all.length).toBe(allSet.size);
+});
+
+it('Makes sure all dessert emojis are unique', () => {
+
+    const all = Object.values(rd.desserts);
+    const allSet = new Set(all);
+
+    expect(all.length).toBe(allSet.size);
+});
+
 it('gets a random desert', () => {
 
     const test = (func) => {
         const dessert = func();
         expect(rd.desserts).toContain(dessert);
+    };
+
+    for (let index = 0; index < 100; index++) {
+        test(rd.getRandomDessertsName);
+        test(rd.getRandomDessert);
+        test(rd.roll);
+    }
+});
+
+it('gets a random desert as an emoji', () => {
+
+    const test = (func) => {
+        const dessert = func(true);
+        expect(rd.emojis).toContain(dessert);
     };
 
     for (let index = 0; index < 100; index++) {
@@ -40,7 +69,17 @@ it('gets N unique deserts at once', () => {
     });
 });
 
+it('checks emojis work', () => {
+    expect(rd.data.AngelCake).toBe('😇+🍰');
+});
+
 it('should fail', () => {
     const check = () => rd.rollN(rd.desserts.length + 1);
     expect(check).toThrow(RangeError);
+});
+
+it('test game', () => {
+    const em = rd.data.Brownie;
+    console.log(em);
+    expect(rd.check(em, 'Brownie')).toBeTruthy();
 });

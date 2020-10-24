@@ -1,56 +1,69 @@
 const seedrandom = require('seedrandom');
 
-const desserts = [
-    'angel-delight',
-    'angel-cake',
-    'amandine',
-    'bakewell',
-    'brownie',
-    'battenberg',
-    'cake',
-    'cupcake',
-    'cookie',
-    'doughnut',
-    'eaton-mess',
-    'eccles-cake',
-    'fudge',
-    'financier',
-    'gingerbread',
-    'fruitcake',
-    'ice-cream',
-    'gateau',
-    'genoise',
-    'hummingbird-cake',
-    'jaffa-cake',
-    'kuchen',
-    'ladyfinger',
-    'lamington',
-    'malt-loaf',
-    'opera',
-    'panforte',
-    'panettone',
-    'rock-cake',
-    'rum-baba',
-    'stollen',
-    'swiss-roll',
-    'teacake',
-    'torte',
-    'tiramisu',
-    'upside-down-cake',
-    'yule-log',
-    'zuger-kirschtorte'
-];
+const desserts = {
+    AngelDelight: '😇+💕',
+    AngelCake: '😇+🍰',
+    Amandine: '🍫🍰',
+    Bakewell: '🍒+🧁',
+    Brownie: '🍫🟤y',
+    Battenberg: '🦇+🧊',
+    Cake: '🍰',
+    Cupcake: '🧁',
+    Cookie: '🍪',
+    Doughnut: '🍩',
+    EatonMess: '🍓+🍨',
+    EcclesCake: '🥧+🍰',
+    Fudge: '?',
+    Financier: '💲-🍰',
+    CarrotCake: '🥕-🍰',
+    Gingerbread: '?-🍞',
+    Fruitcake: '🍇🍎🥭+🍰',
+    IceCream: '🍧',
+    Gateau: '🎂',
+    Genoise: '?',
+    HummingbirdCake: '🎵+🐦+🍰',
+    JaffaCake: '🍊+🍰',
+    Kuchen: '?',
+    Ladyfinger: '?',
+    Lamington: '?',
+    MaltLoaf: '?',
+    Opera: '🎶',
+    Panforte: '?',
+    Panettone: '?',
+    RockCake: '🗻+🍰',
+    RumBaba: '?',
+    Stollen: '?',
+    SwissRoll: '?',
+    Teacake: '☕+🍰',
+    Torte: '?',
+    Tiramisu: '☕+🥃+🍰',
+    UpsideDownCake: '↕-🍰',
+    YuleLog: '🎄-🍰',
+    ZugerKirschtorte: '?'
+};
 
-const rollN = (N) => {
+const names = Object.keys(desserts).map(s => s.replace(/([A-Z])/g, ' $1').trim());
+const emojis = Object.values(desserts);
+
+const rollN = (N, emoji) => {
     const rng = seedrandom();
 
-    if (N > desserts.length) {
-        throw new RangeError(`N must be less than ${desserts.length}`);
+    const dataList = emoji ? emojis : names
+
+    if (N > dataList.length) {
+        throw new RangeError(`N must be less than ${dataList.length}`);
     }
 
     const res = [];
+    let attempts = 0
     while(res.length < N) {
-        const dessert = desserts[Math.ceil(rng() * desserts.length - 1)];
+        attempts++;
+
+        if (attempts > 500) {
+            throw Error('Number of attempts exceeded, something went wrong')
+        }
+
+        const dessert = dataList[Math.ceil(rng() * dataList.length - 1)];
         if (res.includes(dessert)) {
             continue;
         }
@@ -63,12 +76,25 @@ const rollN = (N) => {
     return res
 };
 
-module.exports.rollThree = () => {
-    return rollN(3);
-};
+const check = (emoji, name) => {
+    
+    if (!emojis.includes(emoji)) {
+        throw Error('This emoji doesnt exist')
+    }
+    
+    if (!names.includes(name)) {
+        return false;
+    }
 
-module.exports.desserts = desserts;
-module.exports.getRandomDessertsName = () => rollN(1);
-module.exports.getRandomDessert = () => rollN(1);
-module.exports.roll = () => rollN(1);
+    return emojis.indexOf(emoji) === names.indexOf(name);
+}
+
+module.exports.data = desserts;
+module.exports.emojis = emojis;
+module.exports.desserts = names;
+module.exports.getRandomDessertsName = (emoji) => rollN(1, emoji);
+module.exports.getRandomDessert = (emoji) => rollN(1, emoji);
+module.exports.roll = (emoji) => rollN(1, emoji);
+module.exports.rollThree = (emoji) => rollN(3, emoji);
 module.exports.rollN = rollN;
+module.exports.check = (emoji, name) => check(emoji, name);
