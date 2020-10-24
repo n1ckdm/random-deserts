@@ -9,7 +9,7 @@ it('Makes sure all dessert names are unique', () => {
 
 it('Makes sure all dessert emojis are unique', () => {
 
-    const all = Object.values(rd.desserts);
+    const all = rd.emojis;
     const allSet = new Set(all);
 
     expect(all.length).toBe(allSet.size);
