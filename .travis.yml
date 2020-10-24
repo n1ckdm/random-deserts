@@ -9,6 +9,4 @@ deploy:
   provider: npm
   email: me@nickdmartin.com
   api_key: $NPM_TOKEN
-  on:
-    repo: n1ckdm/random-desserts
-  skip_cleanup: 'true'
+  on: n1ckdm/random-desserts
