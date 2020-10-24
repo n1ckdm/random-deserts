@@ -9,4 +9,3 @@ deploy:
   provider: npm
   email: me@nickdmartin.com
   api_key: $NPM_TOKEN
-  on: n1ckdm/random-desserts
