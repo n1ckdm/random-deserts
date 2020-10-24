@@ -8,8 +8,7 @@ script:
 deploy:
   provider: npm
   email: me@nickdmartin.com
-  api_key:
-    secure: GITqEWTh3cSn66o1H6O7KrtJH8iFgb1G2Js9t4qwcBf4lRApDwxaxtStrII6D5ybwK959X9o8dv/NHmHf5DAmMaSsukfrO61/vA1SGxuqcISxW9aAj/mI6+moV3IoW0M0qldQTAfnJn3jRiprmB+WrNNDOs4RC34Zd92lNA+kO0IsrzQklIInHj+yXYyMPhTw+HangDJB5+JuN7PHny91jSolnTZnrtU+bWo8r2AR4CwNkXdr2xLZk1WnCZhg8+kG0RLJcyzaH1xRt7F+LADLtjYUlJtGog6wZoW4VuBz/x2Xyy6mspP4HMk5oLSKbwy/EZiEaPeeSFtrA9ZH+8RVmmB/QLqEOOB3LKOhb8BT3Di8X5SwDWKp2sZ7TTJx6qr3nqutwICtSBJAjiaeV0leNWHoB7YRrhbaRWFBPEemw/omjFlHEawpm4kMfOFV5R53FKlrWSfewbZDrjZG+7rcJIp4UX+PzHouRUA/J54BwwQcRM3BBE9OB2mvWThC5L7iDOQwwwcYz9TAJy8yOXFI3FH0l9E5xs+inWkL+7sRWd1bQ6PBAs2dbROhJmMFOVc2etQcEnLPms33hy/d9zugZaKD2w/N2eYMBl4b/jyYro6+XQbXAwDq+W/cN+5FYusTWpsjgXoHmkVxf97xHB/MNif7KT/seTzD/crAjQ93ns=
+  api_key: $NPM_TOKEN
   on:
     repo: n1ckdm/random-desserts
   skip_cleanup: 'true'
