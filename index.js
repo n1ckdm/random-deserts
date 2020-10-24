@@ -99,4 +99,3 @@ module.exports.roll = (emoji) => rollN(1, emoji);
 module.exports.rollThree = (emoji) => rollN(3, emoji);
 module.exports.rollN = rollN;
 module.exports.check = (emoji, name) => check(emoji, name);
-module.exports.check = (emoji, name) => check(emoji, name);
