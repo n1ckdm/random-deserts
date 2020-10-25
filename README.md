@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/n1ckdm/random-desserts.svg?branch=master)](https://travis-ci.org/n1ckdm/random-desserts)
 
+Play the random desserts game [here](https://www.httf.uk/):
+
 Generate the names of random desserts 🦄.
 
 ## Install
